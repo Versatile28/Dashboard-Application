@@ -31,7 +31,7 @@ export const createPost = async (req, res)=>{
 
 /* READ */
 
-export const getFeedPost = async (req, res)=>{
+export const getFeedPosts = async (req, res)=>{
    try {
       const post = await Post.find();
       res.status(200).json(post);
