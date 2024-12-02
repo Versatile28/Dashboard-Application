@@ -84,6 +84,7 @@ const Form = () => {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(values),
     });
+    console.log(loggedInResponse);
     const loggedIn = await loggedInResponse.json();
     onSubmitProps.resetForm();
     if (loggedIn) {
@@ -95,6 +96,12 @@ const Form = () => {
       );
       navigate("/home");
     }
+    if (!loggedInResponse.ok) {
+      const errorResponse = await loggedInResponse.json();
+      console.error("Login failed:", errorResponse.msg || "Unknown error");
+      return;
+    }
+    
   };
 
   const handleFormSubmit = async (values, onSubmitProps) => {
